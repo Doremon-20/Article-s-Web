@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Dr. Shailendra Pawaiya | Research Papers & Publications</title>
+    <!-- Google Fonts + Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.5;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles - Academic & Modern */
+        .header {
+            background: linear-gradient(135deg, #0f2b3d 0%, #1a4a6f 100%);
+            color: white;
+            padding: 3rem 0 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header h1 i {
+            font-size: 2.2rem;
+            color: #ffd966;
+        }
+
+        .header .title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0.92;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header .title i {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: rgba(255,255,240,0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        /* Search & Filter Section */
+        .search-section {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-wrapper {
+            background: white;
+            border-radius: 60px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            padding: 0.2rem 0.2rem 0.2rem 1.5rem;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .search-wrapper:focus-within {
+            border-color: #1a4a6f;
+            box-shadow: 0 8px 20px rgba(26, 74, 111, 0.12);
+        }
+
+        .search-wrapper i {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .search-wrapper input {
+            flex: 1;
+            border: none;
+            padding: 0.9rem 0.8rem;
+            font-size: 1rem;
+            background: transparent;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-wrapper input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .search-clear {
+            background: #f1f5f9;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #475569;
+            transition: 0.2s;
+            margin-right: 6px;
+        }
+
+        .search-clear:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        /* Stats row */
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .paper-count {
+            background: #eef2ff;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        .paper-count i {
+            margin-right: 6px;
+        }
+
+        /* Grid Cards Layout */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Research Paper Card */
+        .paper-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f6;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
+            border-color: #cbdde9;
+        }
+
+        /* PDF Preview / Icon area */
+        .card-preview {
+            background: linear-gradient(145deg, #f1f6fd 0%, #e9f0f8 100%);
+            padding: 1.6rem 0 1rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 2px solid #e2edf5;
+        }
+
+        .card-preview i {
+            font-size: 4rem;
+            color: #c7422b;
+            filter: drop-shadow(2px 6px 10px rgba(0,0,0,0.08));
+        }
+
+        .pdf-badge {
+            position: absolute;
+            bottom: -12px;
+            left: 20px;
+            background: #1e4a76;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 1.4rem 1.2rem 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .paper-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #0f2b3d;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .paper-title i {
+            color: #c7422b;
+            font-size: 1.1rem;
+            margin-top: 0.2rem;
+        }
+
+        .paper-meta {
+            font-size: 0.75rem;
+            color: #5a6e85;
+            margin-bottom: 1.2rem;
+            display: flex;
+            gap: 1rem;
+            border-top: 1px solid #ecf3f8;
+            padding-top: 0.7rem;
+        }
+
+        /* Button Group */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.7rem 0.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-read {
+            background: #2b6e3c;
+            color: white;
+            box-shadow: 0 2px 6px rgba(43, 110, 60, 0.2);
+        }
+
+        .btn-read:hover {
+            background: #1f5930;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(31, 89, 48, 0.25);
+        }
+
+        .btn-download {
+            background: #1e5f8e;
+            color: white;
+            box-shadow: 0 2px 6px rgba(30, 95, 142, 0.2);
+        }
+
+        .btn-download:hover {
+            background: #134b70;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(19, 75, 112, 0.25);
+        }
+
+        /* Empty / No results state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 2rem;
+            grid-column: 1 / -1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .empty-state i {
+            font-size: 3.5rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        /* Modal for PDF Preview (optional enhancement) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .modal-container {
+            background: white;
+            border-radius: 1.5rem;
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: #0f2b3d;
+            color: white;
+        }
+
+        .modal-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #ff5c5c;
+        }
+
+        .modal-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0 2.5rem;
+            border-top: 1px solid #e2edf2;
+            margin-top: 1rem;
+            color: #5c6f87;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.2rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header .title {
+                font-size: 1rem;
+            }
+            .papers-grid {
+                grid-template-columns: 1fr;
+                gap: 1.4rem;
+            }
+            .button-group {
+                flex-direction: row;
+            }
+            .btn {
+                padding: 0.65rem 0.3rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .paper-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* Simple animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .paper-card {
+            animation: fadeIn 0.4s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-content">
+        <h1>
+            <i class="fas fa-graduation-cap"></i> 
+            Shailendra Pawaiya
+        </h1>
+        <div class="title">
+            <i class="fas fa-book-open"></i> Research Papers & Articles
+            <i class="fas fa-flask"></i>
+        </div>
+        <div class="badge">
+            <i class="fas fa-database"></i> Peer-Reviewed Publications · Open Access
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <!-- Search Bar -->
+    <div class="search-section">
+        <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Filter papers by title, keywords..." autocomplete="off">
+            <button id="clearSearchBtn" class="search-clear" aria-label="Clear search">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <div class="paper-count">
+            <i class="fas fa-file-alt"></i> <span id="paperCount">0</span> research papers
+        </div>
+        <div class="paper-count" style="background:#e6f7ec;">
+            <i class="fas fa-download"></i> Click to read or download
+        </div>
+    </div>
+
+    <!-- Dynamic Grid Cards -->
+    <div id="papersGrid" class="papers-grid">
+        <!-- JS will inject cards here -->
+        <div class="empty-state">
+            <i class="fas fa-spinner fa-pulse"></i>
+            <p>Loading publications...</p>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <i class="fas fa-file-pdf"></i> All papers are stored in <strong>/pdfs/</strong> folder · Open access research
+        <br><small>© 2025 Shailendra Pawaiya — Academic Portfolio</small>
+    </div>
+</footer>
+
+<!-- Modal for PDF Preview (Optional Enhancement) -->
+<div id="pdfModal" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3 id="modalTitle">📄 Document Preview</h3>
+            <button id="closeModalBtn" class="modal-close"><i class="fas fa-times"></i></button>
+        </div>
+        <iframe id="pdfIframe" class="modal-iframe" title="PDF Preview"></iframe>
+    </div>
+</div>
+
+<script>
+    // ======================== CONFIGURATION ========================
+    // PDF FOLDER PATH: all your PDF files should be inside "pdfs/" folder (relative to this HTML)
+    const PDF_FOLDER = "pdfs/";
+    
+    // ------------------- RESEARCH PAPERS DATABASE -------------------
+    // Add your papers here. For each paper, include:
+    // - title: full title of research paper/article
+    // - filename: actual PDF filename (must exist inside /pdfs/ folder)
+    // - year (optional) or category, but we keep minimal
+    // You can add more papers easily.
+    const papersData = [
+        {
+            title: "C++ Book",
+            filename: "C++.Primer.5th.Edition_2013.pdf"
+        },
+        {
+            title: "Computer Network Book",
+            filename: "CN-Forouzan.pdf"
+        },
+        {
+            title: "Git Notes",
+            filename: "Git notes_Hitesh.pdf"
+        },
+    ];
+    
+    // For demonstration, we also support adding a custom 'heading' for each PDF
+    // You can also add PDFs with custom display names. The filename must match the actual file in /pdfs/
+    // Note: If your PDF file names are different, please update the 'filename' field.
+    
+    // Additional optional metadata (preview modal, icons etc)
+    
+    // Helper: escape HTML to avoid injection
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+    
+    // DOM elements
+    const gridContainer = document.getElementById("papersGrid");
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearSearchBtn");
+    const paperCountSpan = document.getElementById("paperCount");
+    
+    let currentFilter = "";
+    
+    // Modal elements
+    const modal = document.getElementById("pdfModal");
+    const modalIframe = document.getElementById("pdfIframe");
+    const modalTitleSpan = document.getElementById("modalTitle");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    
+    // Helper: open PDF in new tab (Read Article)
+    function openReadArticle(pdfUrl, paperTitle) {
+        // Open PDF in new tab
+        window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+    }
+    
+    // Helper: download PDF using fetch + blob (ensures download, not preview)
+    async function downloadPDF(pdfUrl, fileName) {
+        try {
+            // Show temporary effect on button? optional but fine.
+            const response = await fetch(pdfUrl);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: File not found. Ensure PDF exists in ${PDF_FOLDER}`);
+            }
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            // ensure .pdf extension for download filename
+            let finalName = fileName;
+            if (!finalName.toLowerCase().endsWith('.pdf')) finalName += '.pdf';
+            link.download = finalName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobUrl);
+        } catch (error) {
+            console.error("Download failed:", error);
+            alert(`Download error: ${error.message}\n\nMake sure the PDF file "${fileName}" is placed inside the "${PDF_FOLDER}" folder.`);
+        }
+    }
+    
+    // Enhanced: Show PDF preview inside modal (optional)
+    function previewPDF(pdfUrl, paperTitle) {
+        modalIframe.src = pdfUrl;
+        modalTitleSpan.innerHTML = `<i class="fas fa-file-pdf"></i> ${escapeHtml(paperTitle)}`;
+        modal.style.display = "flex";
+    }
+    
+    // Render cards based on filtered data
+    function renderPapers(filterText) {
+        const lowerFilter = filterText.toLowerCase().trim();
+        let filteredPapers = papersData;
+        
+        if (lowerFilter !== "") {
+            filteredPapers = papersData.filter(paper => 
+                paper.title.toLowerCase().includes(lowerFilter)
+            );
+        }
+        
+        // Update count
+        paperCountSpan.innerText = filteredPapers.length;
+        
+        if (filteredPapers.length === 0) {
+            gridContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-search-minus"></i>
+                    <h3>No matching papers found</h3>
+                    <p style="margin-top: 0.5rem;">Try different keywords or clear the search filter.</p>
+                    <button id="resetSearchFromEmpty" style="margin-top: 1rem; background: #1e5f8e; border: none; padding: 0.5rem 1.5rem; border-radius: 30px; color: white; cursor: pointer;">
+                        <i class="fas fa-undo-alt"></i> Clear Search
+                    </button>
+                </div>
+            `;
+            const resetBtn = document.getElementById("resetSearchFromEmpty");
+            if (resetBtn) {
+                resetBtn.addEventListener("click", () => {
+                    searchInput.value = "";
+                    renderPapers("");
+                    currentFilter = "";
+                });
+            }
+            return;
+        }
+        
+        // Generate card HTML
+        let cardsHtml = "";
+        for (let paper of filteredPapers) {
+            const encodedFilename = encodeURIComponent(paper.filename);
+            const pdfUrl = PDF_FOLDER + encodedFilename;
+            const safeTitle = escapeHtml(paper.title);
+            
+            cardsHtml += `
+                <div class="paper-card" data-title="${safeTitle}">
+                    <div class="card-preview">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="pdf-badge">PDF</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="paper-title">
+                            <i class="fas fa-quote-right"></i>
+                            <span>${safeTitle}</span>
+                        </div>
+                        <div class="paper-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2024-2025</span>
+                            <span><i class="fas fa-file-signature"></i> Research Article</span>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-read read-paper" data-url="${pdfUrl}" data-title="${safeTitle}">
+                                <i class="fas fa-eye"></i> Read Article
+                            </button>
+                            <button class="btn btn-download download-paper" data-url="${pdfUrl}" data-filename="${escapeHtml(paper.filename)}">
+                                <i class="fas fa-download"></i> Download PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        gridContainer.innerHTML = cardsHtml;
+        
+        // Attach event listeners to Read buttons
+        document.querySelectorAll('.read-paper').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = btn.getAttribute('data-url');
+                const title = btn.getAttribute('data-title');
+                if (url) {
+                    // Optional: to enable PDF preview inside modal instead of new tab,
+                    // you can change the behavior. But requirement says "opens PDF in a new tab".
+                    // According to spec: "Read Article → opens PDF in a new tab"
+                    // I'll strictly follow requirement.
+                    openReadArticle(url, title);
+                }
+            });
+        });
+        
+        // Attach event listeners to Download buttons
+        document.querySelectorAll('.download-paper').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = btn.getAttribute('data-url');
+                const filename = btn.getAttribute('data-filename');
+                if (url && filename) {
+                    downloadPDF(url, filename);
+                } else {
+                    alert("Download URL missing. Check PDF folder path.");
+                }
+            });
+        });
+    }
+    
+    // Search input handler
+    function handleSearch() {
+        currentFilter = searchInput.value;
+        renderPapers(currentFilter);
+    }
+    
+    function clearSearch() {
+        searchInput.value = "";
+        handleSearch();
+        searchInput.focus();
+    }
+    
+    // Close modal handler
+    function closeModal() {
+        modal.style.display = "none";
+        modalIframe.src = ""; // stop loading
+    }
+    
+    // Click outside modal to close (optional)
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Modal close button
+    closeModalBtn.addEventListener("click", closeModal);
+    
+    // Keyboard ESC to close modal
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.style.display === "flex") {
+            closeModal();
+        }
+    });
+    
+    // ---- Additional feature: "PDF preview inside modal using iframe" as optional enhancement.
+    // The requirement says optional: "PDF preview inside the website using iframe (modal or expandable section)"
+    // I've built a modal system ready. I'll also attach an optional preview if user double-clicks on card? 
+    // But primary buttons remain "Read Article" (new tab) and "Download". 
+    // However to fully meet optional enhancement, I can also add a small "preview" icon? I already included modal code,
+    // but to not break the requirement, I add a subtle "Preview" icon on hover? but I'm staying safe: 
+    // I've built the modal and if you want to show preview instead of new tab, you can modify read button to open modal.
+    // For strict adherence, Read opens new tab. For extra user delight, I add an extra "Quick Preview" icon?
+    // Actually spec says optional enhancements: PDF preview using iframe. I will include a small "Preview" icon inside each card that opens modal.
+    // This adds extra value without conflicting core requirements.
+    
+    // Enhance cards after render: inject preview icon (Optional enhancement)
+    // I'll modify render function to add a tiny "Preview" icon beside title? but better: add a subtle button "Quick Look"
+    // However to keep UI clean, I'll extend card with an additional ghost preview button (optional)
+    // Update: modify renderPapers to include a small preview icon, which uses modal.
+    // To maintain clean and not overload, I'll add a small 'Preview' text link inside meta area.
+    
+    // Override renderPapers slightly to add preview feature (optional iframe modal)
+    const originalRender = renderPapers;
+    window.renderPapers = function(filterText) {
+        const lowerFilter = filterText.toLowerCase().trim();
+        let filteredPapers = papersData;
+        if (lowerFilter !== "") {
+            filteredPapers = papersData.filter(paper => paper.title.toLowerCase().includes(lowerFilter));
+        }
+        paperCountSpan.innerText = filteredPapers.length;
+        if (filteredPapers.length === 0) {
+            gridContainer.innerHTML = `<div class="empty-state"><i class="fas fa-search-minus"></i><h3>No matching papers</h3><button id="resetSearchFromEmpty" style="background:#1e5f8e; border:none; padding:0.5rem 1.5rem; border-radius:30px; color:white; margin-top:1rem;">Clear Search</button></div>`;
+            const resetBtn = document.getElementById("resetSearchFromEmpty");
+            if (resetBtn) resetBtn.addEventListener("click", () => { searchInput.value = ""; renderPapers(""); });
+            return;
+        }
+        let cardsHtml = "";
+        for (let paper of filteredPapers) {
+            const encodedFilename = encodeURIComponent(paper.filename);
+            const pdfUrl = PDF_FOLDER + encodedFilename;
+            const safeTitle = escapeHtml(paper.title);
+            cardsHtml += `
+                <div class="paper-card">
+                    <div class="card-preview">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="pdf-badge">PDF</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="paper-title">
+                            <i class="fas fa-quote-right"></i>
+                            <span>${safeTitle}</span>
+                        </div>
+                        <div class="paper-meta">
+                            <span><i class="far fa-calendar-alt"></i> 2024-2025</span>
+                            <span><i class="fas fa-file-signature"></i> Research Article</span>
+                            <span style="cursor:pointer; color:#1e5f8e;" class="preview-modal-trigger" data-url="${pdfUrl}" data-title="${safeTitle}">
+                                <i class="fas fa-expand-alt"></i> Quick Preview
+                            </span>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-read read-paper" data-url="${pdfUrl}" data-title="${safeTitle}"><i class="fas fa-eye"></i> Read Article</button>
+                            <button class="btn btn-download download-paper" data-url="${pdfUrl}" data-filename="${escapeHtml(paper.filename)}"><i class="fas fa-download"></i> Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        gridContainer.innerHTML = cardsHtml;
+        document.querySelectorAll('.read-paper').forEach(btn => {
+            btn.addEventListener('click', (e) => { e.preventDefault(); openReadArticle(btn.dataset.url, btn.dataset.title); });
+        });
+        document.querySelectorAll('.download-paper').forEach(btn => {
+            btn.addEventListener('click', (e) => { e.preventDefault(); downloadPDF(btn.dataset.url, btn.dataset.filename); });
+        });
+        document.querySelectorAll('.preview-modal-trigger').forEach(el => {
+            el.addEventListener('click', (e) => { 
+                const url = el.dataset.url;
+                const title = el.dataset.title;
+                modalIframe.src = url;
+                modalTitleSpan.innerHTML = `<i class="fas fa-file-pdf"></i> ${escapeHtml(title)} (Preview)`;
+                modal.style.display = "flex";
+            });
+        });
+    };
+    
+    // replace original function
+    renderPapers = window.renderPapers;
+    
+    // Initialize
+    function init() {
+        renderPapers("");
+        searchInput.addEventListener("input", handleSearch);
+        clearBtn.addEventListener("click", clearSearch);
+    }
+    
+    init();
+    
+    // Instructions for user: create /pdfs/ folder and add PDFs with filenames as listed above
+    console.log("Research website ready: Place PDF files inside 'pdfs/' folder with names: ", papersData.map(p => p.filename).join(", "));
+</script>
+</body>
+</html>
